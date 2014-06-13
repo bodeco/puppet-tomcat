@@ -3,7 +3,6 @@ define tomcat::lib (
   $source  = undef,
   $content = undef,
 ) {
-
   if !$source and !$content {
     fail("Must provide source or content for tomcat::conf ${name}")
   }

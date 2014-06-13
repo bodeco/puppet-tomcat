@@ -1,3 +1,3 @@
 class { 'tomcat':
-  user_http_only => true,
+  use_http_only => true,
 }

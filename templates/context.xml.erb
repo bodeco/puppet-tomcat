@@ -16,11 +16,24 @@
   limitations under the License.
 -->
 <!-- The contents of this file will be loaded for each web application -->
-<Context<%=' useHttpOnly="true"' if @use_http_only %>>
+<Context<%=' useHttpOnly="true"' if @data['use_http_only'] %>>
 
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
+<% @data['resource'] && @data['resource'].keys.sort.each do |name| -%>
+    <Resource name="<%= name %>"
+      auth="<%= @data['resource'][name]['auth'] %>"
+      type="<%= @data['resource'][name]['type'] %>"
+      driverClassName="<%= @data['resource'][name]['driver_class_name'] %>"
+      url="<%= @data['resource'][name]['url'] %>"
+      username="<%= @data['resource'][name]['username'] %>"
+      password="<%= @data['resource'][name]['password'] %>"
+      maxActive="<%= @data['resource'][name]['max_active'] %>"
+      maxIdle="<%= @data['resource'][name]['max_idle'] %>"
+      maxWait="<%= @data['resource'][name]['max_wait'] %>" />
+
+<% end -%>
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />

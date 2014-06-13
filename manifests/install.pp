@@ -10,6 +10,8 @@ class tomcat::install {
   $tomcat_file = "${tomcat_name}.tar.gz"
   $source = "${url}/tomcat-${major_ver}/v${version}/bin/${tomcat_file}"
 
+  ensure_packages(['unzip', 'redhat-lsb-core'])
+
   user { $user:
     ensure => present,
     gid    => $group,
@@ -35,9 +37,10 @@ class tomcat::install {
   }
 
   file { $tomcat::path:
-    ensure => 'symlink',
-    owner  => $user,
-    group  => $group,
-    target => "/opt/${tomcat_name}",
+    ensure  => 'symlink',
+    owner   => $user,
+    group   => $group,
+    target  => "/opt/${tomcat_name}",
+    require => Staging::Deploy[$tomcat_file],
   }
 }

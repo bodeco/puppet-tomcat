@@ -14,6 +14,7 @@ define tomcat::lib (
     mode    => $mode,
     source  => $source,
     content => $content,
+    require => File[$tomcat::path],
     notify  => Service['tomcat'],
   }
 }

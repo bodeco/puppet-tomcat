@@ -8,7 +8,7 @@ class tomcat (
   $java_xms           = '1536m',
   $java_xmx           = '1536m',
   $java_max_perm_size = '256m',
-  $java_options       = '-Djava.awt.headless = true',
+  $java_options       = '-Djava.awt.headless=true',
 ) {
   require 'java'
 

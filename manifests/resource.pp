@@ -1,3 +1,4 @@
+# Tomcat resource
 define tomcat::resource (
   $host,
   $port,
@@ -14,17 +15,17 @@ define tomcat::resource (
 ) {
 
   $data = {
-    resource => {
-      "$full_name" => {
-        auth              => $auth,
-        type              => $type,
-        driver_class_name => $driver_class_name,
-        url               => "jdbc:oracle:thin:@${host}:${port}:${service}",
-        username          => $username,
-        password          => $password,
-        max_active        => $max_active,
-        max_idle          => $max_idle,
-        max_wait          => $max_wait,
+    'resource' => {
+      $full_name => {
+        'auth'              => $auth,
+        'type'              => $type,
+        'driver_class_name' => $driver_class_name,
+        'url'               => "jdbc:oracle:thin:@${host}:${port}:${service}",
+        'username'          => $username,
+        'password'          => $password,
+        'max_active'        => $max_active,
+        'max_idle'          => $max_idle,
+        'max_wait'          => $max_wait,
       },
     },
   }

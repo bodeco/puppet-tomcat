@@ -1,3 +1,4 @@
+# Tomcat confiuration
 class tomcat::config {
   $user  = $tomcat::user
   $group = $tomcat::group

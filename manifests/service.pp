@@ -1,3 +1,4 @@
+# Tomcat service
 class tomcat::service {
   $java_xms           = $tomcat::java_xms
   $java_xmx           = $tomcat::java_xmx
@@ -16,8 +17,8 @@ class tomcat::service {
   }
 
   service { 'tomcat':
-    ensure => running,
-    enable => true,
+    ensure  => running,
+    enable  => true,
     require => File['/etc/init.d/tomcat'],
   }
 }

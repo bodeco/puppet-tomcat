@@ -1,3 +1,4 @@
+# Tomcat war file
 define tomcat::war (
   $source,
 ) {
@@ -10,4 +11,3 @@ define tomcat::war (
     notify  => Service['tomcat'],
   }
 }
-

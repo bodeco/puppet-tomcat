@@ -1,3 +1,4 @@
+# Tomcat installation
 class tomcat::install {
   $version = $tomcat::version
   $url     = $tomcat::url

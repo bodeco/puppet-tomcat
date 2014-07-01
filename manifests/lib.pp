@@ -1,3 +1,4 @@
+# Tomcat lib files
 define tomcat::lib (
   $mode    = '0644',
   $source  = undef,

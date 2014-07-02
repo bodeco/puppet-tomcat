@@ -29,21 +29,4 @@ describe '::tomcat' do
       should contain_class('tomcat::install', 'tomcat::config', 'tomcat::service')
     end
   end
-
-
-  context 'alternate repo' do
-    let(:facts){{
-      :architecture      => 'i386',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 5,
-    }}
-
-
-    let(:params){{
-      :source => @undef,
-    }}
-
-    it do
-    end
-  end
 end

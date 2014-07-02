@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe 'tomcat' do
   context 'default install' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     it 'should install tomcat' do
       should contain_class('tomcat::install')
       should contain_package('unzip', 'redhat-lsb-core')
@@ -26,12 +20,6 @@ describe 'tomcat' do
   end
 
   context 'custom install' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     let(:params){{
       :version => '6.0.42',
       :path    => '/usr/local/tomcat',

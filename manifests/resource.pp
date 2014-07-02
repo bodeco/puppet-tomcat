@@ -16,7 +16,7 @@ define tomcat::resource (
 
   $data = {
     'resource' => {
-      $full_name => {
+      "${full_name}" => { # NOTE: ignore puppet-lint, must double quote variable in hash
         'auth'              => $auth,
         'type'              => $type,
         'driver_class_name' => $driver_class_name,

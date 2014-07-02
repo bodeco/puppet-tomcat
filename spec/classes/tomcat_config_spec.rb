@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe 'tomcat' do
   context 'default install' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     it 'should config tomcat' do
       should contain_class('tomcat::config')
       should contain_datacat('/opt/tomcat/conf/context.xml')
@@ -17,12 +11,6 @@ describe 'tomcat' do
   end
 
   context 'custom install' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     let(:params){{
       :path          => '/usr/local/tomcat',
       :use_http_only => true,

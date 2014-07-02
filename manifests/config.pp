@@ -9,10 +9,10 @@ class tomcat::config {
     template => 'tomcat/context.xml.erb',
   }
 
-  datacat_fragment { "${name} resource in tomcat context.xml":
+  datacat_fragment { 'use_http_only in tomcat context.xml':
     target => "${tomcat::path}/conf/context.xml",
     data   => {
-      use_http_only => $use_http_only,
+      'use_http_only' => $use_http_only,
     }
   }
 }

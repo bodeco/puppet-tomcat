@@ -2,24 +2,12 @@ require 'spec_helper'
 
 describe '::tomcat' do
   context 'default' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     it 'should install tomcat' do
       should contain_class('java', 'tomcat::install', 'tomcat::config', 'tomcat::service')
     end
   end
 
   context 'java preinstalled' do
-    let(:facts){{
-      :architecture      => 'x86_64',
-      :osfamily          => 'redhat',
-      :lsbmajdistrelease => 6,
-    }}
-
     let(:params){{
       :install_java => false,
     }}

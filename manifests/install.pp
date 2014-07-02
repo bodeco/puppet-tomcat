@@ -38,7 +38,7 @@ class tomcat::install {
   }
 
   file { $tomcat::path:
-    ensure  => 'symlink',
+    ensure  => symlink,
     owner   => $user,
     group   => $group,
     target  => "/opt/${tomcat_name}",

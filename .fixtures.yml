@@ -7,4 +7,4 @@ fixtures:
     java: 'https://github.com/bodeco/puppet-java.git'
     helper: 'https://github.com/bodeco/bodeco_module_helper.git'
   symlinks:
-    tomcat: source_dir
+    tomcat: "#{source_dir}"

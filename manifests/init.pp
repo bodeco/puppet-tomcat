@@ -6,12 +6,15 @@ class tomcat (
   $group              = 'tomcat',
   $path               = '/opt/tomcat',
   $use_http_only      = false,
+  $install_java       = true,
   $java_xms           = '1536m',
   $java_xmx           = '1536m',
   $java_max_perm_size = '256m',
   $java_options       = '-Djava.awt.headless=true',
 ) {
-  require 'java'
+  if $install_java {
+    require 'java'
+  }
 
   include 'tomcat::install'
   include 'tomcat::config'

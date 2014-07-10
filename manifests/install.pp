@@ -16,7 +16,7 @@ class tomcat::install {
   user { $user:
     ensure => present,
     gid    => $group,
-    home   => '/opt/tomcat',
+    home   => $tomcat::path,
   }
 
   group { $group:

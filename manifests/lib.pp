@@ -6,34 +6,36 @@ define tomcat::lib (
   $checksum      = undef,
   $checksum_type = undef,
 ) {
+
+  $file_path = "${::tomcat::path}/lib/${name}"
   if !$source and !$content {
     fail("Must provide source or content for tomcat::conf ${name}")
   }
 
-  if source =~ /^puppet/ {
-    file { "${tomcat::path}/lib/${name}":
-      owner   => $tomcat::user,
-      group   => $tomcat::group,
+  if $source =~ /^puppet/ {
+    file { $file_path:
+      owner   => $::tomcat::user,
+      group   => $::tomcat::group,
       mode    => $mode,
       source  => $source,
       content => $content,
-      require => File[$tomcat::path],
+      require => File[$::tomcat::path],
       notify  => Service['tomcat'],
     }
   } else {
-    archive { "${tomcat::path}/lib/${name}":
+    archive { $file_path:
       source        => $source,
       checksum      => $checksum,
       checksum_type => $checksum_type,
       extract       => false,
-      require       => File[$tomcat::path],
+      require       => File[$::tomcat::path],
     }
 
     file { "${tomcat::path}/lib/${name}":
-      owner   => $tomcat::user,
-      group   => $tomcat::group,
+      owner   => $::tomcat::user,
+      group   => $::tomcat::group,
       mode    => $mode,
-      require => Archive["${tomcat::path}/lib/${name}"],
+      require => Archive[$file_path],
       notify  => Service['tomcat'],
     }
   }

@@ -1,10 +1,10 @@
 # Tomcat installation
 class tomcat::install {
-  $version = $tomcat::version
-  $md5     = $tomcat::md5
-  $url     = $tomcat::url
-  $user    = $tomcat::user
-  $group   = $tomcat::group
+  $version = $::tomcat::version
+  $md5     = $::tomcat::md5
+  $url     = $::tomcat::url
+  $user    = $::tomcat::user
+  $group   = $::tomcat::group
 
   $parse_version = split($version,'[.]')
   $major_ver = $parse_version[0]
@@ -30,7 +30,7 @@ class tomcat::install {
       creates => "/opt/${tomcat_name}",
       target  => '/opt',
       notify  => Exec['tomcat owner'],
-      before  => File[$tomat::path],
+      before  => File[$::tomcat::path],
     }
   } else {
     archive { "/opt/${tomcat_name}":
@@ -42,7 +42,7 @@ class tomcat::install {
       creates       => "/opt/${tomcat_name}",
       cleanup       => true,
       notify        => Exec['tomcat owner'],
-      before        => File[$tomat::path],
+      before        => File[$::tomcat::path],
     }
   }
 

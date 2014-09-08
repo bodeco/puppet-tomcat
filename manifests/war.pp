@@ -4,17 +4,21 @@ define tomcat::war (
   $checksum      = undef,
   $checksum_type = undef,
 ) {
-  if source =~ /^puppet/ {
-    file { "${tomcat::path}/webapps/${name}":
-      owner   => $tomcat::user,
-      group   => $tomcat::group,
+  $file_path = "${::tomcat::path}/webapps/${name}"
+  $user = $::tomcat::user
+  $group = $::tomcat::group
+
+  if $source =~ /^puppet/ {
+    file { $file_path,
+      owner   => $user,
+      group   => $group,
       mode    => '0644',
       source  => $source,
       require => File[$tomcat::path],
       notify  => Service['tomcat'],
     }
   } else {
-    archive { "${tomcat::path}/webapps/${name}":
+    archive { $file_path:
       source        => $source,
       checksum      => $checksum,
       checksum_type => $checksum_type,
@@ -22,11 +26,11 @@ define tomcat::war (
       require       => File[$tomcat::path],
     }
 
-    file { "${tomcat::path}/webapps/${name}":
-      owner   => $tomcat::user,
-      group   => $tomcat::group,
+    file { $file_path:
+      owner   => $user,
+      group   => $group,
       mode    => '0644',
-      require => Archive["${tomcat::path}/webapps/${name}"],
+      require => Archive[$file_path],
       notify  => Service['tomcat'],
     }
   }

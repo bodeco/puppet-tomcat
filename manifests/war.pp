@@ -9,7 +9,7 @@ define tomcat::war (
   $group = $::tomcat::group
 
   if $source =~ /^puppet/ {
-    file { $file_path,
+    file { $file_path:
       owner   => $user,
       group   => $group,
       mode    => '0644',

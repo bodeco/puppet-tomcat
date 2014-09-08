@@ -33,7 +33,7 @@ class tomcat::install {
       before  => File[$::tomcat::path],
     }
   } else {
-    archive { "/opt/${tomcat_name}":
+    archive { "/opt/${tomcat_file}":
       source        => $source,
       checksum      => $md5,
       checksum_type => 'md5',

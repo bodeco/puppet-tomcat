@@ -8,7 +8,7 @@ define tomcat::war (
   $user = $::tomcat::user
   $group = $::tomcat::group
 
-  if $source =~ /^puppet/ {
+  if $source =~ /^puppet/ or $source =~ /^\// {
     file { $file_path:
       owner   => $user,
       group   => $group,

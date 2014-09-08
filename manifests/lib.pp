@@ -12,7 +12,7 @@ define tomcat::lib (
     fail("Must provide source or content for tomcat::conf ${name}")
   }
 
-  if $source =~ /^puppet/ or $source =~ /^\// {
+  if $content or $source =~ /^puppet/ or $source =~ /^\// {
     file { $file_path:
       owner   => $::tomcat::user,
       group   => $::tomcat::group,

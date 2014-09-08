@@ -1,6 +1,7 @@
 # Puppet Tomcat module
 class tomcat (
   $version            = '6.0.41',
+  $md5                = 'aaf541df90a5f6160e43177ba8e6ec1e',
   $url                = 'http://apache.mirrors.hoobly.com/tomcat',
   $user               = 'tomcat',
   $group              = 'tomcat',

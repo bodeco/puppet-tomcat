@@ -1,6 +1,7 @@
 # Tomcat installation
 class tomcat::install {
   $version = $tomcat::version
+  $md5     = $tomcat::md5
   $url     = $tomcat::url
   $user    = $tomcat::user
   $group   = $tomcat::group
@@ -23,10 +24,26 @@ class tomcat::install {
     ensure => present,
   }
 
-  staging::deploy { $tomcat_file:
-    source  => $source,
-    creates => "/opt/${tomcat_name}",
-    target  => '/opt',
+  if source =~ /^puppet/ {
+    staging::deploy { $tomcat_file:
+      source  => $source,
+      creates => "/opt/${tomcat_name}",
+      target  => '/opt',
+      notify  => Exec['tomcat owner'],
+      before  => File[$tomat::path],
+    }
+  } else {
+    archive { "/opt/${tomcat_name}":
+      source        => $source,
+      checksum      => $md5,
+      checksum_type => 'md5',
+      extract       => true,
+      extract_path  => '/opt',
+      creates       => "/opt/${tomcat_name}",
+      cleanup       => true,
+      notify        => Exec['tomcat owner'],
+      before        => File[$tomat::path],
+    }
   }
 
   exec { 'tomcat owner':
@@ -34,7 +51,6 @@ class tomcat::install {
     path        => $::path,
     refreshonly => true,
     require     => User[$user], # Implicit group dependency.
-    subscribe   => Staging::Deploy[$tomcat_file],
   }
 
   file { $tomcat::path:
@@ -42,6 +58,5 @@ class tomcat::install {
     owner   => $user,
     group   => $group,
     target  => "/opt/${tomcat_name}",
-    require => Staging::Deploy[$tomcat_file],
   }
 }

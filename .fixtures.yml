@@ -1,6 +1,7 @@
 fixtures:
   repositories:
     stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+    archive: 'https://github.com/nanliu/puppet-archive.git'
     staging: 'https://github.com/nanliu/puppet-staging.git'
     concat: 'https://github.com/theforeman/puppet-concat.git'
     datacat: 'https://github.com/richardc/puppet-datacat.git'

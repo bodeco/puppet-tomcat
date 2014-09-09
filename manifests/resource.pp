@@ -31,7 +31,7 @@ define tomcat::resource (
   }
 
   datacat_fragment { "${name} resource in tomcat context.xml":
-    target => "${tomcat::path}/conf/context.xml",
+    target => "${::tomcat::path}/conf/context.xml",
     data   => $data,
   }
 }

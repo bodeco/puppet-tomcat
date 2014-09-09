@@ -1,9 +1,9 @@
 # Tomcat service
 class tomcat::service {
-  $java_xms           = $tomcat::java_xms
-  $java_xmx           = $tomcat::java_xmx
-  $java_max_perm_size = $tomcat::java_max_perm_size
-  $java_options       = $tomcat::java_options
+  $java_xms           = $::tomcat::java_xms
+  $java_xmx           = $::tomcat::java_xmx
+  $java_max_perm_size = $::tomcat::java_max_perm_size
+  $java_options       = $::tomcat::java_options
 
   $java_home = '/usr/java/latest'
   $catalina_base = '/opt/tomcat'

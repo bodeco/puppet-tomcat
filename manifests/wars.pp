@@ -7,7 +7,7 @@
 #
 # This usage does not provide the full set of features available from tomcat::war, such as checksum verification,
 # but it does simplify the deployment of multiple WAR files from a common location.
-define tomcat::wars(
+define tomcat::wars (
   $source,
 ) {
   tomcat::war { $name :

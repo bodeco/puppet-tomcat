@@ -1,10 +1,11 @@
 # Tomcat installation
 class tomcat::install {
-  $version = $::tomcat::version
-  $md5     = $::tomcat::md5
-  $url     = $::tomcat::url
-  $user    = $::tomcat::user
-  $group   = $::tomcat::group
+  $version       = $::tomcat::version
+  $checksum      = $::tomcat::checksum
+  $checksum_type = $::tomcat::checksum_type
+  $url           = $::tomcat::url
+  $user          = $::tomcat::user
+  $group         = $::tomcat::group
 
   $parse_version = split($version,'[.]')
   $major_ver = $parse_version[0]
@@ -35,8 +36,8 @@ class tomcat::install {
   } else {
     archive { "/opt/${tomcat_file}":
       source        => $source,
-      checksum      => $md5,
-      checksum_type => 'md5',
+      checksum      => $checksum,
+      checksum_type => $checksum_type,
       extract       => true,
       extract_path  => '/opt',
       creates       => "/opt/${tomcat_name}",
